@@ -132,10 +132,23 @@ footer{position:relative;padding:36px 20px 56px;text-align:center;font-size:13.5
 <section class="pan">
   <div class="hd"><i></i><i></i><i></i><em>le prompt</em><span class="badge">15 min</span></div>
   <div class="bd">
-    <p class="t">Pas envie de <span>tout installer&nbsp;?</span></p>
+    <p class="t">Tout installer en <span>un prompt</span></p>
     <p>Ouvre Claude Code dans le dossier de ton appli et colle ça, il fait l'installation avec toi&nbsp;:</p>
     <div class="cmd"><pre>Installe Strix pour moi (le dépôt : github.com/usestrix/strix) et lance un premier test de sécurité sur mon appli. Vérifie d'abord que Docker est installé et qu'il tourne, sinon guide moi pour l'installer. Si je suis sur Windows, fais l'installation dans WSL. Installe Strix, puis demande moi ma clé API (Anthropic, OpenAI, Google ou OpenRouter) et configure STRIX_LLM et LLM_API_KEY sans jamais écrire la clé dans un fichier de mon projet. Avant de lancer, vérifie que mon code est commité dans git. Lance ensuite un test rapide sur ce dossier avec --scan-mode quick et un plafond de dépense --max-budget que tu me demandes. À la fin, lis le rapport dans strix_runs et explique moi simplement chaque faille trouvée, par ordre de gravité, avec comment la corriger.</pre></div>
     <p class="note">Il vérifie ta machine, installe, configure ta clé sans la laisser traîner, lance un premier test borné et te traduit le rapport en clair.</p>
+  </div>
+</section>
+
+<section class="pan piege">
+  <div class="hd"><i></i><i></i><i></i><em>les pièges à éviter</em></div>
+  <div class="bd">
+    <ul>
+      <li><b>Teste seulement ce qui t'appartient.</b> Strix attaque vraiment. Le lancer sur l'appli de quelqu'un d'autre sans son accord écrit, c'est illégal.</li>
+      <li><b>Commence en mode rapide, avec un plafond.</b> Par défaut, Strix fait un test approfondi qui consomme beaucoup d'appels à l'IA. <code>--scan-mode quick</code> et <code>--max-budget</code> gardent la facture sous contrôle.</li>
+      <li><b>Commite ton code avant.</b> Quand tu vises un dossier sur ton ordi, Strix peut y écrire&nbsp;: fais un commit avant de lancer.</li>
+      <li><b>Vise une version de test si tu en as une.</b> Un test d'intrusion sur l'appli en ligne peut créer des comptes ou des données, mieux vaut que ce ne soit pas chez tes vrais clients.</li>
+    </ul>
+    <p class="note">Le projet&nbsp;: <a href="https://github.com/usestrix/strix">usestrix/strix</a> · la doc&nbsp;: <a href="https://docs.strix.ai">docs.strix.ai</a></p>
   </div>
 </section>
 
@@ -189,19 +202,6 @@ export LLM_API_KEY="ta-cle-api"</pre></div>
     <p>Les résultats sont dans <code>strix_runs/</code>. Pour les voir dans un tableau de bord&nbsp;:</p>
     <div class="cmd"><pre>strix view</pre></div>
     <p class="note">Le plus simple ensuite&nbsp;: donne le rapport à Claude et demande lui de corriger les failles une par une, de la plus grave à la moins grave.</p>
-  </div>
-</section>
-
-<section class="pan piege">
-  <div class="hd"><i></i><i></i><i></i><em>les pièges à éviter</em></div>
-  <div class="bd">
-    <ul>
-      <li><b>Teste seulement ce qui t'appartient.</b> Strix attaque vraiment. Le lancer sur l'appli de quelqu'un d'autre sans son accord écrit, c'est illégal.</li>
-      <li><b>Commence en mode rapide, avec un plafond.</b> Par défaut, Strix fait un test approfondi qui consomme beaucoup d'appels à l'IA. <code>--scan-mode quick</code> et <code>--max-budget</code> gardent la facture sous contrôle.</li>
-      <li><b>Commite ton code avant.</b> Quand tu vises un dossier sur ton ordi, Strix peut y écrire&nbsp;: fais un commit avant de lancer.</li>
-      <li><b>Vise une version de test si tu en as une.</b> Un test d'intrusion sur l'appli en ligne peut créer des comptes ou des données, mieux vaut que ce ne soit pas chez tes vrais clients.</li>
-    </ul>
-    <p class="note">Le projet&nbsp;: <a href="https://github.com/usestrix/strix">usestrix/strix</a> · la doc&nbsp;: <a href="https://docs.strix.ai">docs.strix.ai</a></p>
   </div>
 </section>
 
